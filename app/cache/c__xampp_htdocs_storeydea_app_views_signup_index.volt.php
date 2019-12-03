@@ -53,7 +53,7 @@
     </div>
     <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" onclick="doSave()" class="btn btn-default" id="btnregister">Sign Up</button>
+    <button type="submit" onclick="doRegister()" class="btn btn-default" id="btnregister">Sign Up</button>
     
     </div>
     </div>
@@ -62,7 +62,7 @@
 
 <script type="text/javascript">
      
-    function doSave(){
+    function doRegister(){
         var username=document.getElementById("username");
         var email=document.getElementById("email");
         var password=document.getElementById("password");

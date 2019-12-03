@@ -26,6 +26,8 @@ class Story extends \Phalcon\Mvc\Model
      * @var string
      */
     public $bab;
+    
+    public $file;
 
     
 }

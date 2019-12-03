@@ -12,8 +12,8 @@
           <tr>
             <td>{{v.username}}</td>
             <td>{{v.email}}</td>
-            <td><a href="user/edit/{{v.id}}">edit</a> </td>
-            <td><a href="user/del/{{v.id}}">del</a></td>
+            <td><a href="edit/{{v.id}}">edit</a> </td>
+            <td><a href="del/{{v.id}}">del</a></td>
           </tr>
         {% endfor %}
         </tbody>

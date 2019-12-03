@@ -53,17 +53,50 @@
                 <label>Bab</label>
                 <input type="text" class="form-control" id="txtbab" placeholder="MASUKKAN JUDUL BAB">
             </div>
+            <div class="form-group">
+                <form action="index/upload" method="POST" enctype="multipart/form-data">
+                <label>File</label>
+                <input type="file" class="form-control" name=”files[]” multiple id="uploadfile">
+                <!-- <input type="submit" value="Send File(s)"> -->
+                </form>
+                </div>
+    
         <button type="button" onclick="doSave()" class="btn btn-primary"  id="btnsimpan">Simpan</button>
          
         </div>
         <div class="col-md-8">
             <h2>Data</h2>
-            <button class="btn btn-info" onclick="doLoad()">Lihat Data</button>
+            <button class="btn btn-info" onclick="doLoad()" id="btnlihat">Lihat Data</button>
             <div id="dv_data">
 
             </div>
              
         </div>
+       <!-- Menampilkan data -->
+        <table class="table table-hover">
+            <thead>
+            </br>
+            <tr>
+            <th>Judul</th>
+            <th>Info</th>
+            <th>Bab</th>
+            <th>Files</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for v in data_story %}
+            <tr>
+            <td>{{v.judul}}</td>
+            <td>{{v.info}}</td>
+            <td>{{v.bab}}</td>
+            <td>{{v.file}}</td>
+            <td><a href="edit/{{v.id}}">edit</a> </td>
+            <td><a href="del/{{v.id}}">del</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+
         
     </div>
     <hr>
@@ -82,6 +115,7 @@
         var txtjudul=document.getElementById("txtjudul");
         var txtinfo=document.getElementById("txtinfo");
         var txtbab=document.getElementById("txtbab");
+        var uploadfile=document.getElementById("uploadfile");
         
         
         if($("#btnsimpan").text()=="Simpan")
@@ -91,7 +125,7 @@
                 url:"{{ url('story/insertData') }}",
                 //data yang kita kirim dari form melalui metode post 
                 //dimana nantinya controller akan menerima data2 tersebut dan akan mengolahnya.
-                    data:"txtjudul="+txtjudul.value+"&txtinfo="+txtinfo.value+"&txtbab="+txtbab.value,
+                    data:"txtjudul="+txtjudul.value+"&txtinfo="+txtinfo.value+"&txtbab="+txtbab.value+"&uploadfile="+uploadfile.value,
                 // hal yang dilakukan sebelum proses dikirim, yaitu proses loading data
                 beforeSend: function(){
                     document.getElementById("overlay").style.display="inherit";
@@ -121,10 +155,13 @@
   
                 }
             });
-        }
-
-            
+        }      
         
     }
+
+
  </script>
+
+
+
 {% endblock %}

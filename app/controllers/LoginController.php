@@ -43,6 +43,8 @@ class LoginController extends \Phalcon\Mvc\Controller
         {
         $this->session->destroy();
         echo "Session sudah di destroy";
+        //kembali ke page storeydea
+        $this->response->redirect('storeydea');
         }
 
 }
