@@ -69,7 +69,7 @@
     <div class="row">
         <div class="col-md-4">
             
-            <h2>Form</h2>
+            <h2>FORM</h2>
         <div class="form-group">
                 <label>Judul Cerita</label>
                 <input type="text" class="form-control" id="txtjudul" placeholder="MASUKKAN JUDUL CERITA">
@@ -93,18 +93,19 @@
         <button type="button" onclick="doSave()" class="btn btn-primary"  id="btnsimpan">Simpan</button>
          
         </div>
-        <div class="col-md-8">
+        <!-- <div class="col-md-8">
             <h2>Data</h2>
             <button class="btn btn-info" onclick="doLoad()" id="btnlihat">Lihat Data</button>
             <div id="dv_data">
 
-            </div>
+            </div> -->
              
         </div>
        <!-- Menampilkan data -->
         <table class="table table-hover">
             <thead>
             </br>
+            <h2>DATA</h2>
             <tr>
             <th>Judul</th>
             <th>Info</th>
@@ -119,8 +120,10 @@
             <td><?= $v->info ?></td>
             <td><?= $v->bab ?></td>
             <td><?= $v->file ?></td>
-            <td><a href="edit/<?= $v->id ?>">edit</a> </td>
-            <td><a href="del/<?= $v->id ?>">del</a></td>
+            <!-- <td><a href="edit/<?= $v->id ?>">edit</a> </td>
+            <td><a href="del/<?= $v->id ?>">del</a></td> -->
+            <td><a href="<?= $this->url->get('story/edit/' . $v->id) ?>" class="btn btn-xs btn-warning">Edit</a></td>
+            <td><a href="<?= $this->url->get('story/del/' . $v->id) ?>" class="btn btn-xs btn-danger" onclick="return confirm('Apakah anda akan menghapus story ini? ');">Hapus</a></td>
             </tr>
             <?php } ?>
             </tbody>

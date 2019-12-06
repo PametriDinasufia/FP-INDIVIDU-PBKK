@@ -30,34 +30,76 @@
 	    </div>
 	</nav>
 		
-<div class="container-fluid" style="margin-top:100px"></div>
-<form action="<?= $this->url->get('signup/register') ?>" class="form-horizontal" method="POST">
-    <h2>SIGN UP</h2> <br>
-    <div class="form-group">
-    <label class="control-label col-sm-2" for="username" required>Username:</label>
-    <div class="col-sm-10">
-    <input type="username" class="form-control" id="username" placeholder="Enter username">
+
+<style>
+    #overlay {
+      z-index: 1000;
+      display:none;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: rgba(4, 10, 30, 0.8);
+    }   
+
+    #tengah{
+        width: 250px;
+        height: 30px;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    </style>
+
+    <div id="overlay">
+            <div id="tengah">
+                <center>
+                    <br>
+                    <span style="color:#ffffff">Please wait ....</span>
+                    <?= $this->tag->image(['img/loading.gif']) ?>
+                </center>
+            </div>
+        </div>
+
+        
+<div form action="<?= $this->url->get('signup/register') ?>" class="container-fluid" style="margin-top:100px" method="POST">
+    <div class="row">
+        <div class="col-md-4">
+        
+            <h2>REGISTER</h2>
+        <div class="form-group">
+                <label>Username</label>
+                <input type="username" class="form-control" id="username" placeholder="MASUKKAN USERNAME">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" id="email" placeholder="MASUKKAN EMAIL">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="password" placeholder="MASUKKAN PASSWORD">
+            </div>
+                </form>
+                <button type="button" onclick="doRegister()" class="btn btn-primary"  id="btnregister">Register</button>
+         
+                </div>
+        
+            <!-- <button type="submit"  class="btn btn-primary"  id="btnregister">Register</button> -->
+     
+        
     </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <footer>
+                <p>&copy; Pametri Dinasufia (05111540000041) </p>
+            </footer>
+        </div>
     </div>
-    <div class="form-group">
-    <label class="control-label col-sm-2" for="email" required>Email:</label>
-    <div class="col-sm-10">
-    <input type="email" class="form-control" id="email" placeholder="Enter email">
-    </div>
-    </div>
-    <div class="form-group">
-    <label class="control-label col-sm-2" for="password" required>Password:</label>
-    <div class="col-sm-10">
-    <input type="password" class="form-control" id="password" placeholder="Enter password">
-    </div>
-    </div>
-    <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" onclick="doRegister()" class="btn btn-default" id="btnregister">Sign Up</button>
-    
-    </div>
-    </div>
-    </form>
 </div>
 
 <script type="text/javascript">
@@ -68,11 +110,11 @@
         var password=document.getElementById("password");
         
         
-        if($("#btnregister").text()=="Sign Up")
+        if($("#btnregister").text()=="Register")
         {
             $.ajax({
                 type: "POST", //memanggil fungsi jquery ajax di mana method dari form yang akan kita kirimkan bertipe post dan url StoryController dan InsertDataAction
-                url:"<?= $this->url->get('signup/insertData') ?>",
+                url:"<?= $this->url->get('signup/registerAction') ?>",
                 //data yang kita kirim dari form melalui metode post 
                 //dimana nantinya controller akan menerima data2 tersebut dan akan mengolahnya.
                     data:"username="+username.value+"&email="+email.value+"&password="+password.value,
@@ -105,12 +147,14 @@
   
                 }
             });
-        }
-
-            
+        }      
         
     }
+
+
  </script>
+
+
 
 
 	</body>

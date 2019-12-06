@@ -36,34 +36,30 @@
             </div>
         </div>
 
-<div class="container-fluid" style="margin-top:100px">
+        
+<div form action="{{url("signup/register")}}" class="container-fluid" style="margin-top:100px" method="POST">
     <div class="row">
         <div class="col-md-4">
-            
+        
             <h2>Form</h2>
         <div class="form-group">
-                <label>Judul Cerita</label>
-                <input type="text" class="form-control" id="txtjudul" placeholder="MASUKKAN JUDUL CERITA">
+                <label>Username</label>
+                <input type="username" class="form-control" id="username" placeholder="MASUKKAN USERNAME">
             </div>
             <div class="form-group">
-                <label>Info Cerita</label>
-                <input type="text" class="form-control" id="txtinfo" placeholder="MASUKKAN INFO CERITA">
+                <label>Email</label>
+                <input type="email" class="form-control" id="email" placeholder="MASUKKAN EMAIL">
             </div>
             <div class="form-group">
-                <label>Bab</label>
-                <input type="text" class="form-control" id="txtbab" placeholder="MASUKKAN JUDUL BAB">
+                <label>Password</label>
+                <input type="password" class="form-control" id="password" placeholder="MASUKKAN PASSWORD">
             </div>
-        <button type="button" onclick="doSave()" class="btn btn-primary"  id="btnsimpan">Simpan</button>
+                </form>
+                </div>
+        
+            <button type="submit"  class="btn btn-primary"  id="btnregister">Register</button>
+        <!-- <button type="button" onclick="doSave()" class="btn btn-primary"  id="btnregister">Register</button> -->
          
-        </div>
-        <div class="col-md-8">
-            <h2>Data</h2>
-            <button class="btn btn-info" onclick="doLoad()">Lihat Data</button>
-            <div id="dv_data">
-
-            </div>
-             
-        </div>
         
     </div>
     <hr>
@@ -76,22 +72,22 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
      
     function doSave(){
-        var txtjudul=document.getElementById("txtjudul");
-        var txtinfo=document.getElementById("txtinfo");
-        var txtbab=document.getElementById("txtbab");
+        var txtusername=document.getElementById("txtusername");
+        var txtemail=document.getElementById("txtemail");
+        var txtpassword=document.getElementById("txtpassword");
         
         
-        if($("#btnsimpan").text()=="Simpan")
+        if($("#btnregister").text()=="Register")
         {
             $.ajax({
                 type: "POST", //memanggil fungsi jquery ajax di mana method dari form yang akan kita kirimkan bertipe post dan url StoryController dan InsertDataAction
-                url:"{{ url('story/insertData') }}",
+                url:"{{ url('signup/registerAction') }}",
                 //data yang kita kirim dari form melalui metode post 
                 //dimana nantinya controller akan menerima data2 tersebut dan akan mengolahnya.
-                    data:"txtjudul="+txtjudul.value+"&txtinfo="+txtinfo.value+"&txtbab="+txtbab.value,
+                    data:"txtusername="+txtusername.value+"&txtemail="+txtemail.value+"&txtpassword="+txtpassword.value,
                 // hal yang dilakukan sebelum proses dikirim, yaitu proses loading data
                 beforeSend: function(){
                     document.getElementById("overlay").style.display="inherit";
@@ -121,12 +117,13 @@
   
                 }
             });
-        }
-
-            
+        }      
         
     }
 
-    
- </script>
+
+ </script> -->
+
+
+
 {% endblock %}

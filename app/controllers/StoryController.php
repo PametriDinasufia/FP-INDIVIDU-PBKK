@@ -1,7 +1,7 @@
 <?php
 
-class StoryController extends ControllerBase
-//class StoryController extends \Phalcon\Mvc\Controller
+//class StoryController extends ControllerBase
+ class StoryController extends \Phalcon\Mvc\Controller
 {
 
     // public function indexAction()
@@ -13,18 +13,28 @@ class StoryController extends ControllerBase
     // }
     public function indexAction()
     {
-        $data_story = Story::find();
-        $this->view->data_story=$data_story;
+         $data_story = Story::find();
+         $this->view->data_story=$data_story;
+        
     }
 
     public function insertDataAction()
     {
      
-     $str = new Story();
-     $str->judul = $this->request->getPost("txtjudul");
-     $str->info = $this->request->getPost("txtinfo");
-     $str->bab = $this->request->getPost("txtbab");
-     $str->file = $this->request->getPost("uploadfile");
+      $str = new Story();
+      $str->assign(array(
+      $str->judul = $this->request->getPost("txtjudul"),
+      $str->info = $this->request->getPost("txtinfo"),
+      $str->bab = $this->request->getPost("txtbab"),
+      $str->file = $this->request->getPost("uploadfile"),
+      )
+      );
+
+    //  $str = new Story();
+    //  $str->judul = $this->request->getPost("txtjudul");
+    //  $str->info = $this->request->getPost("txtinfo");
+    //  $str->bab = $this->request->getPost("txtbab");
+    //  $str->file = $this->request->getPost("uploadfile");
     
      
      if (!$str->save()) {
@@ -45,19 +55,19 @@ class StoryController extends ControllerBase
    $this->view->judul=$str->judul;
    $this->view->info=$str->info;
    $this->view->bab=$str->bab;
-   $this->view->upload=$str->upload;
+   $this->view->file=$str->file;
    }
 
    public function updateAction()
    {
    $id = $this->request->getPost("id");
-   $str = Story::findFirstById($id);
+   $str = Story::findFirst($id);
 
-                $str->id = $id;
+        $str->id = $id;
      $str->judul = $this->request->getPost("txtjudul");
      $str->info = $this->request->getPost("txtinfo");
      $str->bab = $this->request->getPost("txtbab");
-     $str->file = $this->request->getPost("uploadfile");
+    $str->file = $this->request->getPost("uploadfile");
 
    if (!$str->save()) {
      echo "Gagal Disimpan";
@@ -65,6 +75,7 @@ class StoryController extends ControllerBase
     else
      {
     echo "Data Berhasil Diupdate";
+    $this->response->redirect('story');
      }
    }
 

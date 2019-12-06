@@ -8,7 +8,7 @@ class LoginController extends \Phalcon\Mvc\Controller
        }
        
        
-    private function _registerSession(UserList $user)
+    private function _registerSession(User $user)
        {
      $this->session->set('auth', array(
                'isLog' => 'Y',
@@ -25,7 +25,7 @@ class LoginController extends \Phalcon\Mvc\Controller
                      //melakukan pencarian pada model UserList 
                      //yang mana mengarah pada tabel user_list dan field yang 
                      //di filter adalah username.
-                      $userlist = UserList::findFirst("username='$username'");
+                      $userlist = User::findFirst("username='$username'");
           if ($userlist)
           {
            if($password==$userlist->password)
